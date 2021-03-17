@@ -1,0 +1,11 @@
+{
+  "name": "practice-repo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ko1p/practice-repo.git",
+  "author": "Anton Belko <30528165+ko1p@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.0.0-beta2"
+  }
+}
