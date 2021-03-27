@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar } from './components/Navbar'
+import { Quotes } from './components/Quotes';
 import { TodoForm } from './components/TodoForm';
 import { TodoList } from './components/TodoList';
 import { ITodo } from './Interfaces/ITodo';
@@ -52,6 +53,7 @@ const App: React.FC = () => {
       <div className='container'>
           <TodoForm onAdd={addHandler} />
           <TodoList todos={todos} onToggle={toggleHandler} onRemove={removeHandler} />
+          <Quotes  />
       </div>
     </>
   )
