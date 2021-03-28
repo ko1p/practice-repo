@@ -4,7 +4,6 @@ import { Quotes } from './components/Quotes';
 import { TodoForm } from './components/TodoForm';
 import { TodoList } from './components/TodoList';
 import { ITodo } from './Interfaces/ITodo';
-import { IQuote } from './Interfaces/IQuote';
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([])

@@ -4,10 +4,10 @@ interface IQuotesProps {
     quote: string
 }
 
-interface IQuotesState {
-}
+// interface IQuotesState {
+// }
 
-export class Quotes extends Component<IQuotesProps, IQuotesState> {
+export class Quotes extends Component<IQuotesProps, {}> {
     constructor(props: IQuotesProps) {
         super(props)
     }
