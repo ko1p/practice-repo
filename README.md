@@ -6,3 +6,4 @@
 3) Знакомлюсь с React-Hook-Form.
 4) Знакомлюсь с TypeScript.
 5) Пробую Typescript в связке с React. 
+6) Разбираюсь с generic types
