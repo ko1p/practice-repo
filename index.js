@@ -1,66 +1,114 @@
-"use strict";
-const array = ['one', 'two'];
-const array2 = ['one', 'two'];
-const arrayObjects1 = [
-    {
-        one: "one"
-    },
-    {
-        two: 'two'
-    }
-];
-///
-const arrayObjects2 = [
-    {
-        one: "one"
-    },
-    {
-        two: 'two'
-    }
-];
-const arrayObjects3 = [{ one: '1' }];
-/////
-// const promise: Promise<string> = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         resolve('This promise was resolved')
-//     }, 2000)
-// })
-// promise.then(data => console.log(data))
-const mergeObjects = (a, b) => {
-    return Object.assign({}, a, b);
-};
-const merge = mergeObjects({ one: 'one' }, { two: 'two' });
-console.log(merge.one);
-const withCount = (value) => {
-    return {
-        value,
-        count: `В этом объекте ${value.length} символов`
-    };
-};
-function getObjectValue(obj, key) {
-    return obj[key];
-}
-class Collection {
-    constructor(items = []) {
-        this.items = items;
-    }
-    add(item) {
-        this.items.push(item);
-    }
-    remove(item) {
-        this.items = this.items.filter(i => i !== item);
-    }
-    getItems() {
-        console.log(this.items);
-        return this.items;
+// [data, next] -> [data, next] -> [data, next] 
+
+class Node {
+    constructor(data, next = null) {
+        this.data = data
+        this.next = next
     }
 }
-const strings = new Collection(['string1', 'string4']);
-strings.remove('string4');
-strings.getItems();
-const numbers = new Collection([1, 4]);
-numbers.remove(4);
-numbers.getItems();
-// const objects = new Collection([{one: 1}, {two: 2}])
-// objects.remove({two: 2})
-// objects.getItems()
+
+class LinkedList {
+    constructor() {
+        this.head = null
+        this.tail = null
+    }
+
+    append(data) {
+        const node = new Node(data)
+
+        if (this.tail) {
+            this.tail.next = node
+        }
+
+        if (!this.head) {
+            this.head = node
+        }
+
+        this.tail = node
+    }
+
+    prepend(data) {
+        const node = new Node(data, this.head)
+
+        this.head = node
+
+        if (!this.tail) {
+            this.tail = node
+        }
+    }
+
+    toArray() {
+        let current = this.head
+        const output = []
+
+        while (current) {
+            output.push(current)
+            current = current.next
+        }
+
+        return output
+    }
+
+    find(data) {
+        if (!this.head) {
+            return
+        }
+
+        let current = this.head
+
+        while (current) {
+            if (current.data = data) {
+                return current
+            }
+            current = current.next
+        }
+
+    }
+
+    insertAfter(after, data) {
+        const found = this.find(after)
+
+        if (!found) {
+            return
+        }
+
+        const node = new Node(data, found.next)
+
+        found.next = node
+    }
+
+
+    remove(data) {
+        if (!this.head) {
+            return
+        }
+
+        while (this.head && this.head.data === data) {
+            this.head = this.head.next
+        }
+
+        let current = this.head
+
+        while (current.next) {
+            if(current.next.data === data) {
+                current.next = current.next.next
+            } else {
+                current = current.next
+            }
+        }
+
+        if (this.tail.data === data) {
+            this.tail = current
+        }
+
+    }
+}
+
+const list = new LinkedList()
+list.append('One')
+list.append('two')
+list.prepend('Zero')
+list.prepend('0')
+// list.remove('0')
+
+console.log(list.toArray())

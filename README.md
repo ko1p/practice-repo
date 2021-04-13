@@ -7,3 +7,4 @@
 4) Знакомлюсь с TypeScript.
 5) Пробую Typescript в связке с React. 
 6) Разбираюсь с generic types
+7) Структуры данных в JavaScript. Пишу свой LinkedList
