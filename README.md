@@ -8,3 +8,4 @@
 5) Пробую Typescript в связке с React. 
 6) Разбираюсь с generic types
 7) Структуры данных в JavaScript. Пишу свой LinkedList
+8) Небольшое тестовое задание парсер lisp

@@ -1,88 +1,59 @@
-// [data, next] -> [data, next] -> [data, next] 
-var NodeEl = /** @class */ (function () {
-    function NodeEl(data, next) {
-        this.data = data;
-        this.next = next;
+/**
+* Представим, что на одном из проектов нам потребовался DSL для решения бизнес-задачи. Наши пользователи - большие поклонники Lisp, поэтому синтаксис этого языка им более привычен, 
+* чем синтаксис JS.
+* Парсер оригинального синтаксиса Lisp нам написать хоть и не так сложно, но все же для MVP это может быть неразумно, а вот простенький интерпретатор нам точно будет полезен.
+*
+* Что мы хотим получить:
+* 1. Возможность объявлять функции таким образом: [defn, 'funcName', ['a', 'b'], ['sum', 'a', 'b']], где
+*      defn - ключевое слово для определения функции
+*      'funcName' - имя функции
+*      ['a', 'b'] - перечисление аргументов функции
+*      ['sum', 'a', 'b'] - тело функции (т. е. вызов функции sum с аргументами a и b)
+* 2. Соответственно вызов функции должен быть таким ['funcName', 'a', 'b']
+*
+* Ниже уже реализован некоторый runtime и есть пример вызова interpret. Необходимо имплементировать interpret и defn.
+* 
+* P.S.
+* Даже если не получится выполнять задание в полной мере (например, где-то застряли), все равно скидывайте в качестве решения то, что получилось.
+*/
+
+const defn = (functionName, args, body) => {
+    console.log(functionName, args, body)
+    const func = body[0]
+    body.shift()
+    const bodyArgs = [...body]
+    return (...bodyArgs) => {
+        return func(...bodyArgs)
     }
-    return NodeEl;
-}());
-var LinkedList = /** @class */ (function () {
-    function LinkedList() {
-        this.head = null;
-        this.tail = null;
+}
+
+const interpret = (...code) => {
+    // принимаю массив, проверяю что пришла действительно функция (объявляется через ключевое слово 'defn')
+    if (typeof code[0][0] === 'function' || code[0][0] === 'defn') {
+        // проверяю есть ли название функции
+        const functionName = code[0][1] // если названия функции нет
+        const args = code[0][2] || [] // если аргументов при объявлении функции нет, то будет пустой массив
+        const body = code[0][3]
+        const obj = {}
+        obj[functionName] = defn(functionName, args, body)
+
+        if (code[1]) {
+            const arguments = code[1]
+            arguments.shift()            
+            return obj[functionName](...arguments)
+        }
+    } else {
+        return
     }
-    LinkedList.prototype.append = function (data) {
-        var node = new NodeEl(data);
-        if (this.tail) {
-            this.tail.next = node;
-        }
-        if (!this.head) {
-            this.head = node;
-        }
-        this.tail = node;
-    };
-    LinkedList.prototype.prepend = function (data) {
-        var node = new NodeEl(data, this.head);
-        this.head = node;
-        if (!this.tail) {
-            this.tail = node;
-        }
-    };
-    LinkedList.prototype.toArray = function () {
-        var current = this.head;
-        var output = [];
-        while (current) {
-            output.push(current);
-            current = current.next;
-        }
-        return output;
-    };
-    LinkedList.prototype.find = function (data) {
-        if (!this.head) {
-            return;
-        }
-        var current = this.head;
-        while (current) {
-            if (current.data = data) {
-                return current;
-            }
-            current = current.next;
-        }
-    };
-    LinkedList.prototype.insertAfter = function (after, data) {
-        var found = this.find(after);
-        if (!found) {
-            return;
-        }
-        var node = new NodeEl(data, found.next);
-        found.next = node;
-    };
-    LinkedList.prototype.remove = function (data) {
-        if (!this.head) {
-            return;
-        }
-        while (this.head && this.head.data === data) {
-            this.head = this.head.next;
-        }
-        var current = this.head;
-        while (current.next) {
-            if (current.next.data === data) {
-                current.next = current.next.next;
-            }
-            else {
-                current = current.next;
-            }
-        }
-        if (this.tail.data === data) {
-            this.tail = current;
-        }
-    };
-    return LinkedList;
-}());
-var list = new LinkedList();
-list.append('One');
-list.append('two');
-list.prepend('Zero');
-list.prepend('0');
-// list.remove('0')
-console.log(list.toArray());
+}
+
+// Функция, используемая в runtime
+const sum = (...args) => args.reduce((prev, curr) => prev + curr)
+
+// Пример вызова функции interpret
+const result = interpret(
+    [defn, "sum3", ['a', 'b', 'c'], [sum, 'a', 'b', 'c']],
+    ['sum3', 10, 20, 30]
+)
+
+console.assert(result === 60)
