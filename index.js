@@ -19,11 +19,11 @@
 
 const defn = (functionName, args, body) => {
     console.log(functionName, args, body)
-    const func = body[0]
+    const func = body[0] // наша функция
     body.shift()
-    const bodyArgs = [...body]
+    const bodyArgs = [...body] // аргументы для функции
     return (...bodyArgs) => {
-        return func(...bodyArgs)
+        return func(...bodyArgs) // возвращаю функцию с переданными аргументами
     }
 }
 
@@ -31,15 +31,18 @@ const interpret = (...code) => {
     // принимаю массив, проверяю что пришла действительно функция (объявляется через ключевое слово 'defn')
     if (typeof code[0][0] === 'function' || code[0][0] === 'defn') {
         // проверяю есть ли название функции
-        const functionName = code[0][1] // если названия функции нет
-        const args = code[0][2] || [] // если аргументов при объявлении функции нет, то будет пустой массив
-        const body = code[0][3]
-        const obj = {}
-        obj[functionName] = defn(functionName, args, body)
+        const functionName = code[0][1] // достаю название функции
+        const args = code[0][2] || [] // достаю аргументы, а если аргументов при объявлении функции нет, то будет пустой массив
+        const body = code[0][3] // тело функции
+        const obj = {} // создам объект для хранения объявленных функций
 
-        if (code[1]) {
-            const arguments = code[1]
-            arguments.shift()            
+        obj[functionName] = defn(functionName, args, body) // запишу объявленную из Lisp функцию 
+
+        const funcBody = code[1]
+
+        if (funcBody) {
+            funcBody.shift() // удаляю функцию из массива
+            const arguments = funcBody // агрументы без функции         
             return obj[functionName](...arguments)
         }
     } else {
