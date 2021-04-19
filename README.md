@@ -9,3 +9,4 @@
 6) Разбираюсь с generic types
 7) Структуры данных в JavaScript. Пишу свой LinkedList
 8) Небольшое тестовое задание парсер lisp
+9) Практика Typescript + React
