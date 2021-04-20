@@ -1,29 +1,24 @@
-import React, { useState } from 'react'
+import React, {
+    FC, ReactElement, ReactNode, MouseEvent, FocusEvent,
+  } from 'react';
+  
+  export type PropTypes = {
+    onClick: (e: MouseEvent) => void;
+  };
+  
+  export const Header: FC<PropTypes> = ({ onClick }: PropTypes): ReactElement => {
 
-type PropTypes = {
-    title?: string,
-    children?: never // чтобы запретить передачу children
-}
-
-export const Header: React.FC<PropTypes> = ({ title }: PropTypes) => {
-    const [counter, setCounter] = useState<number>(1)
-
-    const increase = (): void => {
-        setCounter((prev: number) => prev + 1)
+    const mouseOver = (e: React.MouseEvent): void => {
+        console.log(e.currentTarget)
     }
-
-    const decrease = (): void => {
-        setCounter((prev: number) => prev - 1)
-    }
-
+  
     return (
-        <>
-            <h1>{title}</h1>
-            <h3>{counter.toFixed()}</h3>
-        </>
-    )
-}
-
-Header.defaultProps = {
-    title: 'Заголовка ещё нет'
-}
+      <button
+        type="button"
+        onClick={onClick}
+        onMouseOver={mouseOver}
+      >
+        Click me
+      </button>
+    );
+  };
