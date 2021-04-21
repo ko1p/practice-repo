@@ -1,14 +1,17 @@
-import React from 'react';
-import { Header } from './components/Header'
+import React, {useState} from 'react';
+import { Counter }  from './components/Counter'
+import { Increaser }  from './components/Increaser'
 
-function App() {
+const App: React.FC = (): React.ReactElement => {
 
-  const onClick = (e: React.MouseEvent): void => {
-    console.log(e.target)
-  }
+  const [counter, setCounter] = useState<number>(0)
 
   return (
-    <Header onClick={onClick} />
+    <>
+      <h1>Какой-то очень важный сайт. </h1>
+      <Counter counter={counter} />
+      <Increaser setCounter={setCounter} />
+    </>
   );
 }
 
