@@ -10,3 +10,4 @@
 7) Структуры данных в JavaScript. Пишу свой LinkedList
 8) Небольшое тестовое задание парсер lisp
 9) Практика Typescript + React
+10) Некоторые тесты с grid layout
