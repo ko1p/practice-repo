@@ -11,24 +11,30 @@
 
 .header {
     grid-area: header;
+    background-color: rgb(170, 207, 240);
 }
 
 .main-content {
     grid-area: main-content;
+    background-color: rgb(131, 116, 165);
 }
 
 .side-bar {
     grid-area: side-bar;
+    background-color: rgb(219, 240, 170);
 }
 
 .twin-one {
     grid-area: twin-one;
+    background-color: rgb(240, 170, 236);
 }
 
 .twin-two {
     grid-area: twin-two;
+    background-color: rgb(170, 240, 173);
 }
 
 .footer {
     grid-area: footer;
+    background-color: rgb(170, 240, 231);
 }
