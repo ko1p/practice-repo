@@ -1,6 +1,3 @@
-  
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -21,7 +18,7 @@
 
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+yarn-error.log*
 
 # dependencies
 /node_modules
