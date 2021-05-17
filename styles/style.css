@@ -84,6 +84,7 @@
     min-width: 784px;
     display: flex;
     justify-content: space-between;
+    margin: 0 auto;
 }
 
 .two-columns__brief {
