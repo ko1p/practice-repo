@@ -55,6 +55,11 @@
 .header__link {
     color: #2f80ed;
     text-decoration: none;
+    transition: opacity .3s ease-out;
+}
+
+.header__link:hover {
+    opacity: .3;
 }
 
 .header__main-illustration {
@@ -349,7 +354,7 @@
     margin-left: 48px;
     line-height: 42px;
     font-size: 30px;
-    transition: opacity .3s;
+    transition: opacity .3s ease-out;
     align-self: start;
 }
 
@@ -394,6 +399,11 @@
     right: 0;
     text-decoration: none;
     color: #2f80ed;
+    transition: opacity .3s ease-out;
+}
+
+.feinman__link:hover {
+    opacity: .3;
 }
 
 .kaufman {
@@ -430,6 +440,13 @@
 .resourses__logo {
     width: 270px;
     height: 38px;
+    transition: opacity .3s ease-out;
+    transition: transform .3s ease-out;
+}
+
+.resourses__logo:hover {
+    transform: scale(1.2);
+    opacity: .3;
 }
 
 .footer {
@@ -480,6 +497,11 @@
     color: white;
     font-size: 18px;
     line-height: 30px;
+    transition: opacity .3s ease-out;
+}
+
+.footer__column-link:hover {
+    opacity: .3;
 }
 
 .footer__social-icon {
