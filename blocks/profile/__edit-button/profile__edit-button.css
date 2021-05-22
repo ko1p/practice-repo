@@ -8,6 +8,11 @@
     height: 24px;
     border: 1px solid #fff;
     grid-area: button;
+    transition: opacity .3s;
+}
+
+.profile__edit-button:hover {
+    opacity: .5;
 }
 
 @media screen and (min-width: 768px) and (max-width: 880px) {
