@@ -1,4 +1,4 @@
 .card {
     width: 282px;
-    height: 362px;
+    min-height: 362px;
 }
