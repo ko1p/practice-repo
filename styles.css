@@ -1,0 +1,31 @@
+body {
+  color: #2f80ed;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+.content__image {
+  margin: 110px 380px 0;
+  width: 520px;
+  height: 190px;
+}
+
+.content__heading {
+  margin: 10px 430px 0;
+  width: 420px;
+  height: 140px;
+}
+
+.content__paragpaph {
+  margin: 22px 430px 0;
+  width: 420px;
+}
+
+.footer__text {
+  text-align: center;
+  width: 420px;
+  margin: 280px 430px 30px;
+}
+
+.footer__link {
+  color: #2f80ed;
+}
