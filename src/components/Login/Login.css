@@ -16,6 +16,7 @@
 .login-form__subtitle {
     max-width: 90%;
     text-align: center;
+    margin: 20px 0 0 0;
 }
 
 .form {
@@ -61,4 +62,18 @@
 
 .form__button:hover {
     opacity: 1;
+}
+
+.form__button:disabled {
+    background-color: #05050573;
+    opacity: 1;
+    cursor: not-allowed;
+}
+
+.form__error {
+    color: red;
+}
+
+.error__container {
+    min-height: 21px;
 }

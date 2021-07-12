@@ -1,0 +1,11 @@
+.input {
+    outline: 1px solid grey;
+}
+
+.input_correct {
+    outline: 1px solid green;
+}
+
+.input_incorrect {
+    outline: 1px solid red;
+}
