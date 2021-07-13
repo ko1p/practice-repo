@@ -20,7 +20,7 @@
     padding: 34px 36px;  
 }
 
-.results__button {
+.button {
     width: 90%;
     margin: 10px 0;
     color: #fff;
@@ -40,14 +40,14 @@
     transition: opacity .3s;
 }
 
-.results__button:hover {
+.button:hover {
     opacity: 1;
 }
 
-.results__info_correct {
+.infoCorrect {
     color: green;
 }
 
-.results__info_incorrect {
+.infoIncorrect {
     color: red;
 }

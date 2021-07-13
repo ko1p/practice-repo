@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
-import './Login.css';
+import styles from './Login.module.css';
 
 interface ILoginProps {
     setUserName: (login: string) => void
@@ -36,15 +36,15 @@ const Login: React.FC<ILoginProps> = ({ setUserName }) => {
     }
 
     return (
-        <div className="login-form">
-            <h2 className="login-form__title">Добро пожаловать!</h2>
-            <p className="login-form__subtitle">Для входа в приложение укажите, пожалуйста, своё имя.</p>
-            <form className="form" name="login" onSubmit={submitHandler}>
-                <div className="error__container">
-                    {hasError && <span className="form__error">Имя должно быть длинее 2х символов.</span>}
+        <div className={styles.container}>
+            <h2 className={styles.title}>Добро пожаловать!</h2>
+            <p className={styles.subtitle}>Для входа в приложение укажите, пожалуйста, своё имя.</p>
+            <form className={styles.form} name="login" onSubmit={submitHandler}>
+                <div className={styles.errorContainer}>
+                    {hasError && <span className={styles.error}>Имя должно быть длинее 2х символов.</span>}
                 </div>
-                <input className="form__input" onChange={e => onChangeHandler(e)} value={login} type="text" name="login" placeholder="Имя"/>
-                <button className="form__button" type="submit" disabled={isButtonDisabled}>Войти</button>
+                <input className={styles.input} onChange={e => onChangeHandler(e)} value={login} type="text" name="login" placeholder="Имя"/>
+                <button className={styles.button} type="submit" disabled={isButtonDisabled}>Войти</button>
             </form>
         </div>
     )

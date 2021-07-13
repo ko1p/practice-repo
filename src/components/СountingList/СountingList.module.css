@@ -12,11 +12,11 @@
     box-sizing: border-box;
 }
 
-.container__title {
+.title {
     margin: 0;
 }
 
-.container__button {
+.button {
     width: 90%;
     margin: 10px 0;
     color: #fff;
@@ -36,12 +36,16 @@
     transition: opacity .3s;
 }
 
-.container__button:hover {
+.button:hover {
     opacity: 1;
 }
 
-.container__button:disabled {
+.button:disabled {
     background-color: #05050573;
     opacity: 1;
     cursor: not-allowed;
+}
+
+.error {
+    color: red;
 }

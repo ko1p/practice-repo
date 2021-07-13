@@ -4,7 +4,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import './App.css';
+import styles from './App.module.css';
 import CountingList from '../СountingList/СountingList';
 import Login from '../Login/Login';
 import { PageNotFound } from '../PageNotFound/PageNotFound';
@@ -14,7 +14,7 @@ function App() {
   const [userName, setUserName] = useState<string>('noname');
 
   return (
-    <div className="app">
+    <div className={styles.app}>
       <Router>
         <Switch>
           <Route path="/" exact><Login setUserName={setUserName} /></Route>
@@ -22,10 +22,8 @@ function App() {
           <Route path="*" component={PageNotFound}></Route>
         </Switch>
       </Router>
-
     </div>
   );
 }
 
 export default App;
-// TODO: Реализовать 404 страницу. 

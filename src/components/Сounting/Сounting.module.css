@@ -7,15 +7,15 @@
     font-family: 'Roboto Slab', serif;
 }
 
-.input_correct {
+.inputCorrect {
     outline: 1px solid green;
 }
 
-.input_incorrect {
+.inputIncorrect {
     outline: 1px solid red;
 }
 
-.counting-example {
+.counting {
     font-family: 'Roboto Slab', serif;
     font-weight: bold;
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./СountingList.css";
+import styles from "./СountingList.module.css";
 import { Сounting } from "../Сounting/Сounting";
 import { Results } from "../Results/Results";
 import { calcExamples } from "../../utils/calculations";
@@ -63,11 +63,11 @@ const СountingList: React.FC<ICountingListProps> = ({ userName }) => {
   };
 
   return (
-    <div className="container">
-      <h2 className="container__title">
+    <div className={styles.container}>
+      <h2 className={styles.title}>
         Сложение и вычитание с чисел от 0 до 100.
       </h2>
-      <p className="container__subtitle">
+      <p className={styles.subtitle}>
         Решите и укажите ответы для каждого из 10 примеров.
       </p>
       {calculations.map((item, index) => (
@@ -79,10 +79,10 @@ const СountingList: React.FC<ICountingListProps> = ({ userName }) => {
           isResultsTouched={isResultsTouched}
         />
       ))}
-      <button className="container__button" onClick={answerChecker}>
+      <button className={styles.button} onClick={answerChecker}>
         Далее
       </button>
-      {hasError && <span className="error">Заполните все поля</span>}
+      {hasError && <span className={styles.error}>Заполните все поля</span>}
       {!hasError && hasAllAnswers && isResultsShowed && (
         <Results
           correctAnswers={correctAnswers}

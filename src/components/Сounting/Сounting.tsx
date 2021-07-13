@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ICalculation as IData } from "../СountingList/СountingList";
-import './Сounting.css';
-
+import styles from './Сounting.module.css';
 
 interface ICountingProps {
     key: number,
@@ -11,14 +10,13 @@ interface ICountingProps {
     isResultsTouched: boolean
 }
 
-
-
 export const Сounting: React.FC<ICountingProps> = ({id, data, changeHandler, isResultsTouched}) => {
     const [isCorrectAnswer, setIsCorrectAnswer] = useState<boolean>(false);
-    let cls = isCorrectAnswer ? 'input input_correct' : 'input input_incorrect';
+    // let cls = isCorrectAnswer ? 'input input_correct' : 'input input_incorrect';
+    let cls = isCorrectAnswer ? `${styles.input} ${styles.inputCorrect}` : `${styles.input} ${styles.inputIncorrect}` ;
 
     if(!isResultsTouched) {
-        cls = 'input'
+        cls = styles.input
     }
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
@@ -28,12 +26,11 @@ export const Сounting: React.FC<ICountingProps> = ({id, data, changeHandler, is
         } else {            
             setIsCorrectAnswer(true)
         }
-
     }
 
     return (
         <>
-            <span className="counting-example">{data.calculation}</span>
+            <span className={styles.counting}>{data.calculation}</span>
             <input className={cls} type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChangeHandler(e, id)}/>  
         </>
     )
