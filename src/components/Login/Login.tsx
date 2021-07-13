@@ -2,7 +2,11 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import './Login.css';
 
-const Login = () => {
+interface ILoginProps {
+    setUserName: (login: string) => void
+}
+
+const Login: React.FC<ILoginProps> = ({ setUserName }) => {
     let history = useHistory();
     const [login, setLogin] = useState<string>('');
     const [hasError, setHasError] = useState<boolean>(false);
@@ -24,6 +28,7 @@ const Login = () => {
     const submitHandler = (e: React.FormEvent) => {
         e.preventDefault();
         if (!hasError && login) {
+            setUserName(login)
             history.push('/counting')
         }
         console.log(login, 'login');

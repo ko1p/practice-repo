@@ -70,7 +70,7 @@
     cursor: not-allowed;
 }
 
-.form__error {
+.error {
     color: red;
 }
 

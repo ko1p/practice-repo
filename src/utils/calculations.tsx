@@ -9,14 +9,14 @@ const randomCalculation = () => {
   
   if (isAddition) {
   	return {
-    	calculation: `${numberOne} + ${numberTwo}`,
+    	calculation: `${numberOne} + ${numberTwo} =`,
       rightAnswer: numberOne + numberTwo,
       userAnswer: '',
       isCorrect: false
     }
   } else {
     	return {
-    	calculation: `${numberOne} - ${numberTwo}`,
+    	calculation: `${numberOne} - ${numberTwo} =`,
       rightAnswer: numberOne - numberTwo,
       userAnswer: '',
       isCorrect: false

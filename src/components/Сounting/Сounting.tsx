@@ -8,16 +8,16 @@ interface ICountingProps {
     changeHandler: (e: React.ChangeEvent<HTMLInputElement>, index: number) => void,
     data: IData,
     id: number,
-    isResultsShowed: boolean
+    isResultsTouched: boolean
 }
 
 
 
-export const Сounting: React.FC<ICountingProps> = ({id, data, changeHandler, isResultsShowed}) => {
+export const Сounting: React.FC<ICountingProps> = ({id, data, changeHandler, isResultsTouched}) => {
     const [isCorrectAnswer, setIsCorrectAnswer] = useState<boolean>(false);
     let cls = isCorrectAnswer ? 'input input_correct' : 'input input_incorrect';
 
-    if(!isResultsShowed) {
+    if(!isResultsTouched) {
         cls = 'input'
     }
 
@@ -33,7 +33,7 @@ export const Сounting: React.FC<ICountingProps> = ({id, data, changeHandler, is
 
     return (
         <>
-            <span>{data.calculation}</span>
+            <span className="counting-example">{data.calculation}</span>
             <input className={cls} type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChangeHandler(e, id)}/>  
         </>
     )
