@@ -7,6 +7,7 @@ import {
 import './App.css';
 import CountingList from '../СountingList/СountingList';
 import Login from '../Login/Login';
+import { PageNotFound } from '../PageNotFound/PageNotFound';
 
 function App() {
 
@@ -18,9 +19,7 @@ function App() {
         <Switch>
           <Route path="/" exact><Login setUserName={setUserName} /></Route>
           <Route path="/counting" exact><CountingList userName={userName} /></Route>
-          <Route path="*">
-            <h3>Такой страницы нет</h3> 
-          </Route>
+          <Route path="*" component={PageNotFound}></Route>
         </Switch>
       </Router>
 
