@@ -13,8 +13,8 @@ interface IResultsProps {
 export const Results: React.FC<IResultsProps> = ({correctAnswers, incorrectAnswers, userName, setIsResultsShowed, setIncorrectAnswers, setCorrectAnswers}) => {
     const onClickHandler = () => {
         setIsResultsShowed(false);
-        setCorrectAnswers(0)
-        setIncorrectAnswers(0)
+        setCorrectAnswers(0);
+        setIncorrectAnswers(0);
     }
 
     return (

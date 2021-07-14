@@ -10,7 +10,6 @@ import Login from '../Login/Login';
 import { PageNotFound } from '../PageNotFound/PageNotFound';
 
 function App() {
-
   const [userName, setUserName] = useState<string>('noname');
 
   return (

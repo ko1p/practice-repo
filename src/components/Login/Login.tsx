@@ -28,8 +28,8 @@ const Login: React.FC<ILoginProps> = ({ setUserName }) => {
     const submitHandler = (e: React.FormEvent) => {
         e.preventDefault();
         if (!hasError && login) {
-            setUserName(login)
-            history.push('/counting')
+            setUserName(login);
+            history.push('/counting');
         }
         console.log(login, 'login');
         setLogin('');

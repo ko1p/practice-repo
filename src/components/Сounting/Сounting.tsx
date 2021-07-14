@@ -12,19 +12,18 @@ interface ICountingProps {
 
 export const Сounting: React.FC<ICountingProps> = ({id, data, changeHandler, isResultsTouched}) => {
     const [isCorrectAnswer, setIsCorrectAnswer] = useState<boolean>(false);
-    // let cls = isCorrectAnswer ? 'input input_correct' : 'input input_incorrect';
     let cls = isCorrectAnswer ? `${styles.input} ${styles.inputCorrect}` : `${styles.input} ${styles.inputIncorrect}` ;
 
     if(!isResultsTouched) {
-        cls = styles.input
+        cls = styles.input;
     }
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
         changeHandler(e, id);
         if (data.rightAnswer !== data.userAnswer) {  
-            setIsCorrectAnswer(false)
+            setIsCorrectAnswer(false);
         } else {            
-            setIsCorrectAnswer(true)
+            setIsCorrectAnswer(true);
         }
     }
 
