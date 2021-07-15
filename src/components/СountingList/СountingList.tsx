@@ -3,6 +3,8 @@ import styles from "./СountingList.module.css";
 import { Сounting } from "../Сounting/Сounting";
 import { Results } from "../Results/Results";
 import { calcExamples } from "../../utils/calculations";
+import { useSelector, useDispatch } from "react-redux";
+import { setCalculations as setCalculationsTwo } from "../../store/actions/calculations";
 
 export interface ICalculation {
   calculation: string;
@@ -15,6 +17,8 @@ interface ICountingListProps {
 }
 
 const СountingList: React.FC<ICountingListProps> = ({ userName }) => {
+  const dispatch = useDispatch();
+
   const [calculations, setCalculations] = useState<Array<ICalculation>>([]);
   const [hasError, setHasError] = useState<boolean>(false);
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
@@ -24,6 +28,7 @@ const СountingList: React.FC<ICountingListProps> = ({ userName }) => {
   const [isResultsTouched, setIsResultsTouched] = useState<boolean>(false);
 
   useEffect(() => {
+    dispatch(setCalculationsTwo(calcExamples(10)))
     setCalculations(calcExamples(10));
   }, []);
 

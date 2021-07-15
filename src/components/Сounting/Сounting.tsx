@@ -30,7 +30,7 @@ export const Сounting: React.FC<ICountingProps> = ({id, data, changeHandler, is
     return (
         <>
             <span className={styles.counting}>{data.calculation}</span>
-            <input className={cls} type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChangeHandler(e, id)}/>  
+            <input className={cls} type="number" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChangeHandler(e, id)}/>  
         </>
     )
 }

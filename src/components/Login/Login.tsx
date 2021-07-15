@@ -1,12 +1,23 @@
 import React, {useState} from "react";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux';
+import {setUserLogin} from '../../store/actions/login';
 import styles from './Login.module.css';
 
 interface ILoginProps {
     setUserName: (login: string) => void
 }
 
+interface ILoginState {
+    login: {
+        login: string
+    }
+} // REDUX
+
 const Login: React.FC<ILoginProps> = ({ setUserName }) => {
+    const stateLogin = useSelector((state: ILoginState) => state.login.login);
+    const dispatch = useDispatch();
+
     let history = useHistory();
     const [login, setLogin] = useState<string>('');
     const [hasError, setHasError] = useState<boolean>(false);
@@ -15,7 +26,7 @@ const Login: React.FC<ILoginProps> = ({ setUserName }) => {
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = e.target.value;
         setLogin(inputValue);
-
+        dispatch(setUserLogin(inputValue));
         if (inputValue.length < 2) {
             setHasError(true);
             setIsButtonDisabled(true);
@@ -34,7 +45,7 @@ const Login: React.FC<ILoginProps> = ({ setUserName }) => {
         console.log(login, 'login');
         setLogin('');
     }
-
+    console.log(stateLogin, 'login from redux')
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>Добро пожаловать!</h2>
