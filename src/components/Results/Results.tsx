@@ -3,15 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setIsResultsShowed as setIsResultsShowedR } from '../../store/actions/results'
 import styles from './Results.module.css';
 
-interface IResultsProps {
-    correctAnswers: number,
-    incorrectAnswers: number,
-    userName: string,
-    setIsResultsShowed: (boolean: boolean) => void,
-    setIncorrectAnswers: (num: number) => void,
-    setCorrectAnswers: (num: number) => void
-}
-
 type UserName = {
     login: {
         login: string
@@ -30,7 +21,7 @@ type IncorrectAnswersNum = {
     }
 }
 
-export const Results: React.FC<IResultsProps> = ({correctAnswers, incorrectAnswers, userName, setIsResultsShowed, setIncorrectAnswers, setCorrectAnswers}) => {
+export const Results: React.FC = () => {
     const dispatch = useDispatch();
     const userNameR = useSelector((state: UserName) => state.login.login);
     const correctAnswersNum = useSelector((state: CorrectAnswersNum) => state.results.correctAnswers);
@@ -38,7 +29,7 @@ export const Results: React.FC<IResultsProps> = ({correctAnswers, incorrectAnswe
     
     const onClickHandler = () => {
         dispatch(setIsResultsShowedR(false))
-        setIsResultsShowed(false);
+
         
         // setCorrectAnswers(0);
         // setIncorrectAnswers(0);

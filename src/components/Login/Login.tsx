@@ -1,61 +1,56 @@
-import React, {useState} from "react";
+import React from "react";
 import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
-import {setUserLogin} from '../../store/actions/login';
+import {setUserLogin, setIsLoginValid, setIsLoginTouched} from '../../store/actions/login';
 import styles from './Login.module.css';
-
-interface ILoginProps {
-    setUserName: (login: string) => void
-}
 
 interface ILoginState {
     login: {
         login: string
+        isValid: boolean
+        isTouched: false
     }
-} // REDUX
+}
 
-const Login: React.FC<ILoginProps> = ({ setUserName }) => {
-    const stateLogin = useSelector((state: ILoginState) => state.login.login);
+const Login: React.FC = () => {
+    const userLogin = useSelector((state: ILoginState) => state.login.login);
+    const isLoginValid = useSelector((state: ILoginState) => state.login.isValid);
+    const isLoginTouched = useSelector((state: ILoginState) => state.login.isTouched);
     const dispatch = useDispatch();
 
     let history = useHistory();
-    const [login, setLogin] = useState<string>('');
-    const [hasError, setHasError] = useState<boolean>(false);
-    const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const inputValue = e.target.value;
-        setLogin(inputValue);
-        dispatch(setUserLogin(inputValue));
-        if (inputValue.length < 2) {
-            setHasError(true);
-            setIsButtonDisabled(true);
+        const userLogin = e.target.value;
+
+        dispatch(setIsLoginTouched(true));
+        dispatch(setUserLogin(userLogin));
+
+        if (userLogin.trim().length < 2) {
+            dispatch(setIsLoginValid(false));
         } else {
-            setHasError(false);
-            setIsButtonDisabled(false);
+            dispatch(setIsLoginValid(true));
         }
     }
 
     const submitHandler = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!hasError && login) {
-            setUserName(login);
+        if (isLoginValid && userLogin) {
+            dispatch(setUserLogin(userLogin));
             history.push('/counting');
         }
-        console.log(login, 'login');
-        setLogin('');
     }
-    console.log(stateLogin, 'login from redux')
+
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>Добро пожаловать!</h2>
             <p className={styles.subtitle}>Для входа в приложение укажите, пожалуйста, своё имя.</p>
             <form className={styles.form} name="login" onSubmit={submitHandler}>
                 <div className={styles.errorContainer}>
-                    {hasError && <span className={styles.error}>Имя должно быть длинее 2х символов.</span>}
+                    {!isLoginValid && isLoginTouched && <span className={styles.error}>Имя должно быть длинее 2х символов.</span>}
                 </div>
-                <input className={styles.input} onChange={e => onChangeHandler(e)} value={login} type="text" name="login" placeholder="Имя"/>
-                <button className={styles.button} type="submit" disabled={isButtonDisabled}>Войти</button>
+                <input className={styles.input} onChange={e => onChangeHandler(e)} value={userLogin} type="text" name="login" placeholder="Имя"/>
+                <button className={styles.button} type="submit" disabled={!isLoginValid}>Войти</button>
             </form>
         </div>
     )

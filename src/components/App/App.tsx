@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,14 +10,12 @@ import Login from '../Login/Login';
 import { PageNotFound } from '../PageNotFound/PageNotFound';
 
 function App() {
-  const [userName, setUserName] = useState<string>('noname');
-
   return (
     <div className={styles.app}>
       <Router>
         <Switch>
-          <Route path="/" exact><Login setUserName={setUserName} /></Route>
-          <Route path="/counting" exact><CountingList userName={userName} /></Route>
+          <Route path="/" exact><Login /></Route>
+          <Route path="/counting" exact><CountingList /></Route>
           <Route path="*" component={PageNotFound}></Route>
         </Switch>
       </Router>

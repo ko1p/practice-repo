@@ -1,7 +1,7 @@
 const SET_CORRECT_ANSWERS_NUM = 'SET_CORRECT_ANSWERS_NUM';
 const SET_INCORRECT_ANSWERS_NUM = 'SET_INCORRECT_ANSWERS_NUM';
 const SET_IS_RESULTS_SHOWED = 'SET_IS_RESULTS_SHOWED';
-const SET_IS_RESULTS_TOUCHED = 'SET_IS_RESULTS_TOUCHED'
+const SET_IS_RESULTS_TOUCHED = 'SET_IS_RESULTS_TOUCHED';
 
 type SetCorrectAnswers = {
     type: typeof SET_CORRECT_ANSWERS_NUM
@@ -23,7 +23,7 @@ type SetIsResultsTouched = {
     isResultsTouched: boolean
 }
 
-type ActionTypes = SetCorrectAnswers | SetIncorrectAnswers | SetIsResultsShowed | SetIsResultsTouched
+type ActionTypes = SetCorrectAnswers | SetIncorrectAnswers | SetIsResultsShowed | SetIsResultsTouched 
 
 const initialState = {
     correctAnswers: 0,
