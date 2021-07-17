@@ -28,11 +28,7 @@ export const Results: React.FC = () => {
     const inCorrectAnswersNum = useSelector((state: IncorrectAnswersNum) => state.results.incorrectAnswers);
     
     const onClickHandler = () => {
-        dispatch(setIsResultsShowedR(false))
-
-        
-        // setCorrectAnswers(0);
-        // setIncorrectAnswers(0);
+        dispatch(setIsResultsShowedR(false));
     }
 
     return (

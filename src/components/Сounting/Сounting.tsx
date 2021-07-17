@@ -17,10 +17,10 @@ interface IIsResultsTouched {
 
 export const Сounting: React.FC<ICountingProps> = ({data}) => {
     const dispatch = useDispatch();
-    const isResultsTouchedR = useSelector((state: IIsResultsTouched) => state.results.isResultsTouched); //
+    const isResultsTouchedR = useSelector((state: IIsResultsTouched) => state.results.isResultsTouched);
     const isCorrectAnswer = data.isCorrect;
 
-    let cls = isCorrectAnswer ? `${styles.input} ${styles.inputCorrect}` : `${styles.input} ${styles.inputIncorrect}` ;
+    let cls = isCorrectAnswer ? `${styles.input} ${styles.inputCorrect}` : `${styles.input} ${styles.inputIncorrect}`;
 
     if(!isResultsTouchedR) {
         cls = styles.input;

@@ -53,23 +53,23 @@ const СountingList: React.FC= () => {
   }
 
   useEffect(() => {
-    dispatch(setCalculationsTwo(calcExamples(10))); //
+    dispatch(setCalculationsTwo(calcExamples(10)));
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(setIsResultsTouched(false))
+    dispatch(setIsResultsTouched(false));
   }, [calculationsR, dispatch])
 
   const answerChecker = () => {
     const noEmptyInputs = calculationsR.every((item) => item.userAnswer !== '');
 
     if (!noEmptyInputs) {
-      dispatch(hasEmptyInputs(true));//
-      dispatch(setIsResultsShowed(false)) // R
+      dispatch(hasEmptyInputs(true));
+      dispatch(setIsResultsShowed(false));
     } else {
-      dispatch(hasEmptyInputs(false));//  
-      dispatch(setIsResultsShowed(true)) // R
-      dispatch(setIsResultsTouched(true)) // R
+      dispatch(hasEmptyInputs(false));
+      dispatch(setIsResultsShowed(true));
+      dispatch(setIsResultsTouched(true));
       userCorrectAnswersCounter();
     }
   };
