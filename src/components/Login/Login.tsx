@@ -4,13 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setUserLogin, setIsLoginValid, setIsLoginTouched} from '../../store/actions/login';
 import styles from './Login.module.css';
 
-interface ILoginState {
-    login: {
-        login: string
-        isValid: boolean
-        isTouched: false
-    }
-}
+import { ILoginState } from "../../interfaces";
 
 const Login: React.FC = () => {
     const userLogin = useSelector((state: ILoginState) => state.login.login);
@@ -46,7 +40,7 @@ const Login: React.FC = () => {
             <h2 className={styles.title}>Добро пожаловать!</h2>
             <p className={styles.subtitle}>Для входа в приложение укажите, пожалуйста, своё имя.</p>
             <form className={styles.form} name="login" onSubmit={submitHandler}>
-                <div className={styles.errorContainer}>
+                <div className={styles.error_ontainer}>
                     {!isLoginValid && isLoginTouched && <span className={styles.error}>Имя должно быть длинее 2х символов.</span>}
                 </div>
                 <input className={styles.input} onChange={e => onChangeHandler(e)} value={userLogin} type="text" name="login" placeholder="Имя"/>

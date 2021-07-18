@@ -9,7 +9,7 @@ import CountingList from '../СountingList/СountingList';
 import Login from '../Login/Login';
 import { PageNotFound } from '../PageNotFound/PageNotFound';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className={styles.app}>
       <Router>

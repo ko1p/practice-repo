@@ -44,10 +44,10 @@
     opacity: 1;
 }
 
-.infoCorrect {
+.info_correct {
     color: green;
 }
 
-.infoIncorrect {
+.info_incorrect {
     color: red;
 }

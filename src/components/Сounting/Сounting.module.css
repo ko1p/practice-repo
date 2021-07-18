@@ -7,11 +7,11 @@
     font-family: 'Roboto Slab', serif;
 }
 
-.inputCorrect {
+.input_correct {
     outline: 1px solid green;
 }
 
-.inputIncorrect {
+.input_incorrect {
     outline: 1px solid red;
 }
 

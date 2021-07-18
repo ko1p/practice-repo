@@ -5,63 +5,33 @@ import { Сounting } from "../Сounting/Сounting";
 import { Results } from "../Results/Results";
 import { calcExamples } from "../../utils/calculations";
 import { useSelector, useDispatch } from "react-redux";
-import { setCalculations as setCalculationsTwo, hasEmptyInputs } from "../../store/actions/calculations";
-import { setCorrectAnswers, setIncorrectAnswers, setIsResultsShowed, setIsResultsTouched } from '../../store/actions/results'
+import { setCalculations, hasEmptyInputs } from "../../store/actions/calculations";
+import { setCorrectAnswers, setIncorrectAnswers, setIsResultsShowed, setIsResultsTouched } from '../../store/actions/results';
 
-export interface ICalculation {
-  calculation: string;
-  rightAnswer: number;
-  userAnswer: string | number;
-  isCorrect: boolean
-}
-
-interface ICalculationList {
-  calculations: {
-    calculationsList: any[] // TODO исправить
-  }
-}
-
-interface IHasEmpyInputs {
-  calculations: {
-    hasEmptyInputs: boolean
-  }
-}
-
-interface IIsResultsShowed {
-  results: {
-    isResultsShowed: boolean
-  }
-}
-
-interface IUserLogin {
-  login: {
-    login: string
-  }
-}
-
+import { ICalculationList, ILoginState, ICalculationsState, IResultsState } from "../../interfaces";
 
 const СountingList: React.FC= () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const login = useSelector((state: IUserLogin) => state.login.login); 
-  const calculationsR = useSelector((state: ICalculationList) => state.calculations.calculationsList);
-  const isInputsEmpty = useSelector((state: IHasEmpyInputs) => state.calculations.hasEmptyInputs);
-  const isResultsShowedR = useSelector((state: IIsResultsShowed) => state.results.isResultsShowed);
+  const login = useSelector((state: ILoginState) => state.login.login); 
+  const calculations = useSelector((state: ICalculationList) => state.calculations.calculationsList);
+  const isInputsEmpty = useSelector((state: ICalculationsState) => state.calculations.hasEmptyInputs);
+  const isResultsShowed = useSelector((state: IResultsState) => state.results.isResultsShowed);
 
   if (login === '') {
     history.push('/');
   }
 
   useEffect(() => {
-    dispatch(setCalculationsTwo(calcExamples(10)));
+    dispatch(setCalculations(calcExamples(10)));
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(setIsResultsTouched(false));
-  }, [calculationsR, dispatch])
+  }, [calculations, dispatch])
 
-  const answerChecker = () => {
-    const noEmptyInputs = calculationsR.every((item) => item.userAnswer !== '');
+  const userAnswerChecker = () => {
+    const noEmptyInputs = calculations.every((item) => item.userAnswer !== '');
 
     if (!noEmptyInputs) {
       dispatch(hasEmptyInputs(true));
@@ -77,8 +47,8 @@ const СountingList: React.FC= () => {
   const userCorrectAnswersCounter = () => {
     let correctAnswersCounter = 0;
     let inCorrectAnswersCounter = 0;
-    calculationsR.forEach((item) => {
-      if (item.userAnswer === item.rightAnswer) {
+    calculations.forEach((item) => {
+      if (+item.userAnswer === item.rightAnswer) {
         correctAnswersCounter += 1;
       } else {
         inCorrectAnswersCounter += 1;
@@ -96,14 +66,14 @@ const СountingList: React.FC= () => {
       <p className={styles.subtitle}>
         Решите и укажите ответы для каждого из 10 примеров.
       </p>
-      {calculationsR.map((item, index) => (
+      {calculations.map((item, index) => (
         <Сounting key={`counting-${index}`} data={item} />
       ))}
-      <button className={styles.button} onClick={answerChecker}>
+      <button className={styles.button} onClick={userAnswerChecker}>
         Далее
       </button>
       {isInputsEmpty && <span className={styles.error}>Заполните все поля</span>}
-      {!isInputsEmpty && isResultsShowedR && (
+      {!isInputsEmpty && isResultsShowed && (
         <Results />
       )}
     </div>
